@@ -1,0 +1,22 @@
+name: update-submodules
+author: gendloop
+description: 'update-submodules'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: checkout
+        uses: actions/checkout@v3
+
+      - name: update-submodules
+        shell: bash
+        run: |
+          # config
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          # update submodules to latest
+          git submodule update --remote 
+          # submit
+          git add .
+          (git commit -m "chore: update submodules") || true
+          (git push) || true
