@@ -8,15 +8,15 @@ runs:
     - name: checkout
       uses: actions/checkout@v3
 
-      - name: update-submodules
-        shell: bash
-        run: |
-          # config
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          # update submodules to latest
-          (git submodule update --remote) || true
-          # submit
-          git add .
-          (git commit -m "chore: update submodules") || true
-          (git push) || true
+    - name: update-submodules
+      shell: bash
+      run: |
+        # config
+        git config --global user.name "$GITHUB_ACTOR"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        # update submodules to latest
+        (git submodule update --remote) || true
+        # submit
+        git add .
+        (git commit -m "chore: update submodules") || true
+        (git push) || true
