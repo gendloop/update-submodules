@@ -1,11 +1,6 @@
 name: update-submodules
 author: gendloop
 description: 'update-submodules'
-inputs:
-  token:
-    description: 'Personal token'
-    required: true
-    default: ${{ github.token }}
 
 runs:
   using: 'composite'
@@ -13,7 +8,7 @@ runs:
     - name: checkout
       uses: actions/checkout@v3
       with:
-        token: ${{ inputs.token }}
+        submodules: recurse
 
     - name: update-submodules
       shell: bash
