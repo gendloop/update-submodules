@@ -3,9 +3,9 @@ author: gendloop
 description: 'update-submodules'
 inputs:
   token:
-      description: 'Personal token'
-      required: true
-      default: ${{ github.token }}
+    description: 'Personal token'
+    required: true
+    default: ${{ github.token }}
 
 runs:
   using: 'composite'
@@ -21,6 +21,7 @@ runs:
         # config
         git config --global user.name "$GITHUB_ACTOR"
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global http.sslVerify false
         git config user.name
         git config user.email
         # update submodules to latest
