@@ -1,12 +1,19 @@
 name: update-submodules
 author: gendloop
 description: 'update-submodules'
+inputs:
+  token:
+      description: 'Personal token'
+      required: true
+      default: ${{ github.token }}
 
 runs:
   using: 'composite'
   steps:
     - name: checkout
       uses: actions/checkout@v3
+      with:
+        token: ${{ inputs.token }}
 
     - name: update-submodules
       shell: bash
@@ -16,7 +23,6 @@ runs:
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git config user.name
         git config user.email
-        git config --global credential.helper cache
         # update submodules to latest
         git submodule init
         git submodule update --remote
