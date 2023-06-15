@@ -14,11 +14,15 @@ runs:
       shell: bash
       run: |
         # config
-        git config --global user.name "$GITHUB_ACTOR"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git config --global http.sslVerify false
-        git config user.name
-        git config user.email
+        if [ "$GITHUB_ACTOR" != "${{ github.repository_owner }}" ]; then
+          git config --global user.name "gendloop"
+          git config --global user.email "gendloop@163.com"
+        else
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        fi
+        git config --global credential.helper store
+        echo "machine github.com login ${{ github.actor }} password ${{ inputs.token }}" > ~/.netrc
         # update submodules to latest
         git submodule init
         git submodule update --remote
