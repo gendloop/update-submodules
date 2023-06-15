@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: update-submodules
         uses: gendloop/update-submodules@main
-        with: ${{ secrets.GENDLOOP_ACCESS_TOKEN }}
+        with: 
+          token: ${{ secrets.GENDLOOP_ACCESS_TOKEN }}
 
       
