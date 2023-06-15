@@ -2,6 +2,12 @@ name: update-submodules
 author: gendloop
 description: 'update-submodules'
 
+inputs:
+  token:
+    description: 'Personal Token'
+    required: false
+    default: ${{ github.token }}
+
 runs:
   using: 'composite'
   steps:
