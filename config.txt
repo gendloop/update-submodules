@@ -1,0 +1,5 @@
+
+PROJECT_NAME=update-submodules
+update-submodules_VERSION_MAJOR=1
+update-submodules_VERSION_MINOR=0
+update-submodules_VERSION_PATCH=0
