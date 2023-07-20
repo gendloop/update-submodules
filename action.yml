@@ -20,13 +20,15 @@ runs:
       shell: bash
       run: |
         # config
-        if [ "$GITHUB_ACTOR" != "${{ github.repository_owner }}" ]; then
-          git config --global user.name "gendloop"
-          git config --global user.email "gendloop@163.com"
-        else
-          git config --global user.name "$GITHUB_ACTOR"
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        fi
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        # if [ "$GITHUB_ACTOR" != "${{ github.repository_owner }}" ]; then
+        #   git config --global user.name "gendloop"
+        #   git config --global user.email "gendloop@163.com"
+        # else
+        #   git config --global user.name "$GITHUB_ACTOR"
+        #   git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        # fi
         git config --global credential.helper store
         echo "machine github.com login ${{ github.actor }} password ${{ inputs.token }}" > ~/.netrc
         # update submodules to latest
